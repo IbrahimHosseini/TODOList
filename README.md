@@ -1,4 +1,4 @@
-# To‑Do List (SwiftUI + SwiftData)
+# To‑Do List (SwiftUI + SwiftData) For macOS
 
 A modern To‑Do app built with SwiftUI, Swift Concurrency, and SwiftData. It demonstrates MVVM architecture, local persistence, and a clean, accessible UI with swipe actions, popovers, and alerts.
 
