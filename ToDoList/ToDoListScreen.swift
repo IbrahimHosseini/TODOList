@@ -34,15 +34,17 @@ struct ToDoListScreen: View {
 
                                 // Title + note + due date
                                 VStack(alignment: .leading, spacing: 2) {
-                                    HStack(spacing: 6) {
+                                    HStack(spacing: 4) {
+                                        // Small priority icon before the title
+                                        smallPriorityIcon(for: item.priority)
+                                            .accessibilityLabel(badge(for: item.priority))
+                                        
                                         Text(item.title)
+                                            .font(.system(size: 14, weight: .medium))
                                             .strikethrough(item.isCompleted, pattern: .solid, color: .secondary)
                                             .foregroundStyle(item.isCompleted ? .secondary : .primary)
                                             .lineLimit(2)
 
-                                        // Small priority icon before the title
-                                        smallPriorityIcon(for: item.priority)
-                                            .accessibilityLabel(badge(for: item.priority))
                                     }
 
                                     if !item.note.isEmpty {

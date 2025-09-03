@@ -84,7 +84,7 @@ struct ToDoDetailView: View {
 
             Section("Note") {
                 TextEditor(text: $note)
-                    .frame(minHeight: 30)
+                    .frame(minHeight: 55)
             }
 
         }
