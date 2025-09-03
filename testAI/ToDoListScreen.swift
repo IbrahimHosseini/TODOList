@@ -11,6 +11,9 @@ struct ToDoListScreen: View {
     @ObservedObject var vm: ToDoListViewModel
     @Binding var newTitle: String
 
+    // State for presenting detail when the info icon is tapped
+    @State private var selectedItem: ToDoItem?
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -31,14 +34,12 @@ struct ToDoListScreen: View {
 
                                 // Title + note + due date
                                 VStack(alignment: .leading, spacing: 2) {
-                                    
                                     HStack(spacing: 6) {
-                                        
                                         Text(item.title)
                                             .strikethrough(item.isCompleted, pattern: .solid, color: .secondary)
                                             .foregroundStyle(item.isCompleted ? .secondary : .primary)
                                             .lineLimit(2)
-                                        
+
                                         // Small priority icon before the title
                                         smallPriorityIcon(for: item.priority)
                                             .accessibilityLabel(badge(for: item.priority))
@@ -66,9 +67,9 @@ struct ToDoListScreen: View {
 
                                 Spacer()
 
-                                // Trailing info icon that navigates to details
-                                NavigationLink {
-                                    ToDoDetailView(vm: vm, item: item)
+                                // Info button shows details
+                                Button {
+                                    selectedItem = item
                                 } label: {
                                     Image(systemName: "info.circle")
                                         .imageScale(.medium)
@@ -76,15 +77,32 @@ struct ToDoListScreen: View {
                                         .accessibilityLabel("Show details")
                                 }
                                 .buttonStyle(.plain)
+                                // Attach popover to this button so it feels anchored to the tapped control
+                                .popover(isPresented: Binding(
+                                    get: { selectedItem?.id == item.id },
+                                    set: { newValue in
+                                        if !newValue { selectedItem = nil }
+                                    }
+                                ),
+                                attachmentAnchor: .rect(.bounds),
+                                arrowEdge: .top) {
+                                    if let selected = selectedItem {
+                                        ToDoDetailView(vm: vm, item: selected)
+                                            .presentationDetents([.medium, .large])
+                                            .presentationDragIndicator(.visible)
+                                    }
+                                }
                             }
-                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            // Put delete on trailing side for standard swipe-to-delete UX
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button(role: .destructive) {
                                     vm.delete(item)
                                 } label: {
                                     Label("Delete", systemImage: "trash")
                                 }
                             }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                            // Keep completion on leading side
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                 Button {
                                     vm.toggleCompletion(for: item)
                                 } label: {
@@ -257,4 +275,3 @@ struct ToDoListScreen: View {
         .accessibilityHidden(true)
     }
 }
-
