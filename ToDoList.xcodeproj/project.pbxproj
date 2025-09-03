@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		19FE98832E68B6E000A24E30 /* testAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		19FE98832E68B6E000A24E30 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		19FE98842E68B6E000A24E30 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				19FE98832E68B6E000A24E30 /* testAI.app */,
+				19FE98832E68B6E000A24E30 /* ToDoList.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		19FE98822E68B6E000A24E30 /* testAI */ = {
+		19FE98822E68B6E000A24E30 /* ToDoList */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 19FE988E2E68B6E200A24E30 /* Build configuration list for PBXNativeTarget "testAI" */;
+			buildConfigurationList = 19FE988E2E68B6E200A24E30 /* Build configuration list for PBXNativeTarget "ToDoList" */;
 			buildPhases = (
 				19FE987F2E68B6E000A24E30 /* Sources */,
 				19FE98802E68B6E000A24E30 /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				19FE98852E68B6E000A24E30 /* testAI */,
 			);
-			name = testAI;
+			name = ToDoList;
 			packageProductDependencies = (
 			);
 			productName = testAI;
-			productReference = 19FE98832E68B6E000A24E30 /* testAI.app */;
+			productReference = 19FE98832E68B6E000A24E30 /* ToDoList.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 19FE987E2E68B6E000A24E30 /* Build configuration list for PBXProject "testAI" */;
+			buildConfigurationList = 19FE987E2E68B6E000A24E30 /* Build configuration list for PBXProject "ToDoList" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				19FE98822E68B6E000A24E30 /* testAI */,
+				19FE98822E68B6E000A24E30 /* ToDoList */,
 			);
 		};
 /* End PBXProject section */
@@ -326,7 +326,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		19FE987E2E68B6E000A24E30 /* Build configuration list for PBXProject "testAI" */ = {
+		19FE987E2E68B6E000A24E30 /* Build configuration list for PBXProject "ToDoList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19FE988C2E68B6E200A24E30 /* Debug */,
@@ -335,7 +335,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		19FE988E2E68B6E200A24E30 /* Build configuration list for PBXNativeTarget "testAI" */ = {
+		19FE988E2E68B6E200A24E30 /* Build configuration list for PBXNativeTarget "ToDoList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				19FE988F2E68B6E200A24E30 /* Debug */,
