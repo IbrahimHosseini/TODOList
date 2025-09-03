@@ -11,9 +11,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		19FE98852E68B6E000A24E30 /* testAI */ = {
+		19FE98852E68B6E000A24E30 /* ToDoList */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = testAI;
+			path = ToDoList;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		19FE987A2E68B6E000A24E30 = {
 			isa = PBXGroup;
 			children = (
-				19FE98852E68B6E000A24E30 /* testAI */,
+				19FE98852E68B6E000A24E30 /* ToDoList */,
 				19FE98842E68B6E000A24E30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,7 +61,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				19FE98852E68B6E000A24E30 /* testAI */,
+				19FE98852E68B6E000A24E30 /* ToDoList */,
 			);
 			name = ToDoList;
 			packageProductDependencies = (
