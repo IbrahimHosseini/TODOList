@@ -1,0 +1,114 @@
+# Xcode & macOS
+.DS_Store
+*.swp
+*.lock
+profile
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+# User settings
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad
+
+# Build artifacts
+build/
+DerivedData/
+
+# Swift Package Manager
+.swiftpm/
+.build/
+Package.resolved
+# If you commit Package.resolved, comment the line above
+
+# CocoaPods
+Pods/
+# If you use Pods in CI, you may want to commit them. Otherwise ignore.
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# Accio dependency manager
+Dependencies/
+.accio/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+fastlane/README.md
+
+# App artifacts
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.xcarchive
+
+# SwiftPM Xcode workspace data
+.projectWorkspace/
+
+# Playground
+timeline.xctimeline
+playground.xcworkspace
+
+# SwiftLint / SwiftFormat caches
+.swiftlint_cache
+.swiftformat
+
+# Firebase / GoogleService files (uncomment if you don't commit them)
+# GoogleService-Info.plist
+
+# Xcode Server & provisioning
+*.mobileprovision
+*.provisionprofile
+
+# Logs
+*.log
+
+# Symbolication
+*.crash
+
+# Coverage
+*.xccovreport
+*.xccovarchive
+.swift-tests
+
+# Localization intermediate
+*.stringsdict
+
+# Metal intermediate files
+*.air
+
+# Editor/OS junk
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# SPM artifacts (Xcode 15+/Swift 5.9+ caching)
+/.index/
+/SourcePackages/
+
+# Tuist / XcodeGen
+Tuist/Derived/
+.project.yml
+project.yml
+
+# SwiftData / Core Data generated snapshots (if any)
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# VisionOS assets cache
+*.usdz.cache
+
+# Swift Playgrounds app packages
+*.swiftpm
+
+# Generated files (adjust as needed)
+Generated/
+
+# End of .gitignore
