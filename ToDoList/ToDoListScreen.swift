@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ToDoListScreen: View {
     @ObservedObject var vm: ToDoListViewModel
@@ -276,4 +277,24 @@ struct ToDoListScreen: View {
         }
         .accessibilityHidden(true)
     }
+}
+
+#Preview("To‑Do List") {
+    @Previewable @State var newTitle: String = ""
+    // Mock data for preview
+    // Build a temporary in-memory SwiftData container for previews
+    let schema = Schema([ToDoEntity.self])
+    let inMemory = ModelConfiguration(
+        "Preview",
+        schema: schema,
+        isStoredInMemoryOnly: true,
+        allowsSave: true
+    )
+    let container = try! ModelContainer(for: schema, configurations: [inMemory])
+    let context = ModelContext(container)
+    
+    let vm = ToDoListViewModel(context: context)
+    let sample = ToDoItem(id: UUID(), title: "Buy groceries", isCompleted: false, note: "Milk, eggs, bread", priority: .medium, dueDate: Calendar.current.date(byAdding: .hour, value: 2, to: Date()))
+    
+    ToDoListScreen(vm: vm, newTitle: $newTitle)
 }
