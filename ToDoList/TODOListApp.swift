@@ -1,5 +1,5 @@
 //
-//  testAIApp.swift
+//  TODOListApp.swift
 //  testAI
 //
 //  Created by Mahsa on 6/12/1404 AP.
@@ -10,7 +10,7 @@ import SwiftData
 import UniformTypeIdentifiers
 
 @main
-struct testAIApp: App {
+struct TODOListApp: App {
 
     // MARK: - ModelContainer
 
