@@ -35,7 +35,8 @@ struct ToDoDetailView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 24) {
+           
             HStack(spacing: 16) {
                 HStack {
                     TextField("Title", text: $title)
@@ -56,31 +57,27 @@ struct ToDoDetailView: View {
             }
 
             // Always show date & time picker
-            HStack(alignment: .center, spacing: 8) {
-                DatePicker(
-                    "Due Date",
-                    selection: $dueDate,
-                    displayedComponents: [.date, .hourAndMinute]
-                )
-                .datePickerStyle(.compact)
-                
-                Spacer()
-                
-                Toggle("Completed", isOn: $isCompleted)
-                    .onChange(of: isCompleted) { _, newValue in
-                        var updated = item
-                        updated = ToDoItem(
-                            id: updated.id,
-                            title: updated.title,
-                            isCompleted: newValue,
-                            createdAt: updated.createdAt,
-                            note: updated.note,
-                            priority: updated.priority,
-                            dueDate: dueDate
-                        )
-                        vm.update(item: updated)
-                    }
-            }
+            DatePicker(
+                "Due Date",
+                selection: $dueDate,
+                displayedComponents: [.date, .hourAndMinute]
+            )
+            .datePickerStyle(.compact)
+            
+            Toggle("Completed", isOn: $isCompleted)
+                .onChange(of: isCompleted) { _, newValue in
+                    var updated = item
+                    updated = ToDoItem(
+                        id: updated.id,
+                        title: updated.title,
+                        isCompleted: newValue,
+                        createdAt: updated.createdAt,
+                        note: updated.note,
+                        priority: updated.priority,
+                        dueDate: dueDate
+                    )
+                    vm.update(item: updated)
+                }
 
             Section("Note") {
                 TextEditor(text: $note)
