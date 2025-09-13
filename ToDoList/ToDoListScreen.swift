@@ -11,9 +11,11 @@ import SwiftData
 struct ToDoListScreen: View {
     @ObservedObject var vm: ToDoListViewModel
     @Binding var newTitle: String
+    @Binding var dueDate: Date?
 
     // State for presenting detail when the info icon is tapped
     @State private var selectedItem: ToDoItem?
+    @State private var isPresentingAdd: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -119,25 +121,25 @@ struct ToDoListScreen: View {
                         .onMove(perform: vm.moveItems(from:to:))
                     }
                     .listStyle(.inset)
+                }
 
-                    Divider()
-
+                // Floating add button at bottom-right
+                VStack {
+                    Spacer()
                     HStack {
-                        TextField("New task", text: $newTitle)
-                            .textFieldStyle(.roundedBorder)
-                            .submitLabel(.done)
-                            .onSubmit { addNewItem() }
-
-                        Button {
-                            addNewItem()
-                        } label: {
-                            Image(systemName: "plus.circle.fill")
-                                .imageScale(.large)
+                        Spacer()
+                        Button(action: { isPresentingAdd = true }) {
+                            Image(systemName: "plus")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundStyle(.white)
+                                .padding(18)
+                                .background(Circle().fill(Color.accentColor))
                         }
-                        .disabled(newTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                        .accessibilityLabel("Add task")
+                        .shadow(color: .black.opacity(0.2), radius: 6, x: 0, y: 3)
+                        .padding(.trailing, 20)
+                        .padding(.bottom, 20)
                     }
-                    .padding()
-                    .background(.thinMaterial)
                 }
 
                 if vm.isLoading {
@@ -155,7 +157,7 @@ struct ToDoListScreen: View {
                     .animation(.easeInOut(duration: 0.2), value: vm.isLoading)
                 }
             }
-            .navigationTitle("To‑Do")
+            .navigationTitle("To Do List")
             .toolbar {
                 ToolbarItem(placement: .automatic) {
                     Button {
@@ -181,16 +183,11 @@ struct ToDoListScreen: View {
                 dismissButton: .default(Text("OK"))
             )
         }
-    }
-
-    private func addNewItem() {
-        let trimmed = newTitle.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return }
-        withAnimation {
-            // Set due date to current time
-            vm.add(title: trimmed, dueDate: Date())
+        .sheet(isPresented: $isPresentingAdd) {
+            AddTaskView(newTitle: $newTitle, dueDate: $dueDate) { title, due in
+                withAnimation { vm.add(title: title, dueDate: due ?? Date()) }
+            }
         }
-        newTitle = ""
     }
 
     private func badge(for p: ToDoPriority) -> String {
@@ -281,6 +278,7 @@ struct ToDoListScreen: View {
 
 #Preview("To‑Do List") {
     @Previewable @State var newTitle: String = ""
+    @Previewable @State var dueDate: Date? = nil
     // Mock data for preview
     // Build a temporary in-memory SwiftData container for previews
     let schema = Schema([ToDoEntity.self])
@@ -294,7 +292,6 @@ struct ToDoListScreen: View {
     let context = ModelContext(container)
     
     let vm = ToDoListViewModel(context: context)
-    let sample = ToDoItem(id: UUID(), title: "Buy groceries", isCompleted: false, note: "Milk, eggs, bread", priority: .medium, dueDate: Calendar.current.date(byAdding: .hour, value: 2, to: Date()))
     
-    ToDoListScreen(vm: vm, newTitle: $newTitle)
+    ToDoListScreen(vm: vm, newTitle: $newTitle, dueDate: $dueDate)
 }

@@ -14,11 +14,12 @@ struct ContentView: View {
     // Hold the actual view model as a StateObject so SwiftUI observes its @Published changes.
     @StateObject private var viewModelBox = ViewModelBox()
     @State private var newTitle: String = ""
+    @State private var dueDate: Date? = nil
 
     var body: some View {
         Group {
             if let vm = viewModelBox.viewModel {
-                ToDoListScreen(vm: vm, newTitle: $newTitle)
+                ToDoListScreen(vm: vm, newTitle: $newTitle, dueDate: $dueDate)
             } else {
                 ProgressView("Loading…")
             }

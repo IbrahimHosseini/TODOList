@@ -53,16 +53,11 @@ struct AddTaskView: View {
     }
 }
 
-#Preview {
-    struct PreviewWrapper: View {
-        @State private var title: String = ""
-        @State private var due: Date? = nil
+#Preview("AddTaskView") {
+    @State var title: String = ""
+    @State var due: Date? = nil
 
-        var body: some View {
-            AddTaskView(newTitle: $title, dueDate: $due) { t, d in
-                print("Added: \(t) due: \(String(describing: d))")
-            }
-        }
+    return AddTaskView(newTitle: $title, dueDate: $due) { t, d in
+        print("Added: \(t) due: \(String(describing: d))")
     }
-    PreviewWrapper()
 }
